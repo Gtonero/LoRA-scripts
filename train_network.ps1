@@ -3,14 +3,14 @@
 <# ##### Config start ##### #>
 # Path variables
 $name = "name"
-$postfix = ""
+$prefix = ""
 $sd_scripts_dir = "Folder SD-script" # Path to kohya-ss/sd-scripts repository 
 $ckpt = "Model" # Path to checkpoint (ckpt / safetensors)
 $is_sd_v2_ckpt = 0 # '1' if loading SD 2.x ckeckpoint
 $is_sd_v2_768_ckpt = 0 # '1', if loading SD 2.x-768 checkpoint
 $image_dir = "training_image_folder\$name" # Path to training images folder. N_ConceptName inside
-$output_dir = "Output\$name$postfix" # LoRA network saving path
-$output_name = "$name"+"$postfix" # LoRA network file name (no extension)
+$output_dir = "Output\$name$prefix" # LoRA network saving path
+$output_name = "$name"+"$prefix" # LoRA network file name (no extension)
 $training_comment = ""
 
 # (optional) Additional paths

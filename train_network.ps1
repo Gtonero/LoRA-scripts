@@ -100,12 +100,12 @@ $max_bucket_reso = 2048
 
 $is_random_seed = 0        # Seed for training. 1 = random seed, 0 = static seed 1337
 $shuffle_caption = 1       # Shuffle comma-separated captions
-$keep_tokens = 2           # Keep heading N tokens when shuffling caption tokens
+$keep_tokens = 1           # Keep heading N tokens when shuffling caption tokens
  
 #Cache_latents
 $random_crop = 0           #Suitable for subjects at the edge of the image. Enabling this will auto disable cache latents
-$cache_latents = 1         #It takes longer to prepare the data but will be faster while training
-$cache_latents_to_disk = 1 #Suitable for a large number of images The cache will be stored in the training folder [advisable to enable it]
+$cache_latents = 0         #It takes longer to prepare the data but will be faster while training
+$cache_latents_to_disk = 0 #Suitable for a large number of images The cache will be stored in the training folder [advisable to enable it]
 $no_metadata = 0
 
 $min_timestep = 0              # <not recommend> 0 = defualt
@@ -128,8 +128,8 @@ $gradient_accumulation_steps = 1 # https://huggingface.co/docs/transformers/perf
 $max_data_loader_n_workers = 0   # Max number of CPU threads for DataLoader
                                # The lower the number, the less is RAM consumptiong, faster epoch start and slower data loading
                                # Lower numbers can negatively affect training speed
-$save_precision = "bf16"       # Whether to use custom precision for saving, and its type. Possible values: no, float, fp16, bf16
-$mixed_precision = "bf16"      # Whether to use mixed precision for training, and its type. Possible values: no, fp16, bf16
+$save_precision = "fp16"       # Whether to use custom precision for saving, and its type. Possible values: no, float, fp16, bf16
+$mixed_precision = "fp16"      # Whether to use mixed precision for training, and its type. Possible values: no, fp16, bf16
 $do_not_interrupt = 0 # Do not interrupt script on questionable moments. Enabled by default if running in a chain
 $logging_dir = "logging folder" # (optional)
 $log_prefix = "$output_name" + "_"
@@ -405,7 +405,7 @@ if ($is_structure_wrong -eq 0 -and $abort_script -ne "y")
 
 	# run parameters
     
-	$run_parameters = "--network_module=`"$network_module`"  --train_data_dir=`"$image_dir`" --highvram " 
+	$run_parameters = "--network_module=`"$network_module`"  --train_data_dir=`"$image_dir`" " 
     if ( $network_weights -ne "" -and $enable_netowrk -eq "1" ) { $run_parameters += "--network_weights=`"$network_weights`" " }
     if ( $dim_from_weights -eq 1 -and $network_weights -ne "" -and $enable_netowrk -eq "1" ) { $run_parameters += " --dim_from_weight" }
     if ( $validation_split -gt 0 ) { $run_parameters += " --validation_split=$validation_split --validation_seed=$validation_seed" } 

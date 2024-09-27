@@ -5,5 +5,5 @@ Give unrestricted script access to powershell so venv can work:
 - Type Set-ExecutionPolicy Unrestricted and answer A
 - Close admin powershell window
 
-## Windows Install
+## Windows Installation
 run_install.bat
